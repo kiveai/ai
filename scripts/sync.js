@@ -54,7 +54,19 @@ const buildIndex = () => {
     }
   })
 
-  return JSON.stringify({ skills }, null, 2) + '\n'
+  // Short arrays are emitted inline so the payload matches Biome formatting in
+  // consumers that vendor it (e.g. the kive monorepo).
+  const json = JSON.stringify({ skills }, null, 2).replace(
+    /\[\n\s+([^[\]]+?)\n\s+\]/gs,
+    (match, body) => {
+      const inline = `[${body
+        .split('\n')
+        .map((line) => line.trim())
+        .join(' ')}]`
+      return inline.length <= 70 ? inline : match
+    }
+  )
+  return json + '\n'
 }
 
 let drift = false

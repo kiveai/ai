@@ -3,23 +3,17 @@
     {
       "name": "kive-library",
       "description": "Browse and reuse what's already in a Kive workspace via the Kive MCP server. Use when the user asks about their existing Kive content — workspaces, saved products, trained models, studios, video presets, or previous generations — e.g. \"show my Kive products\", \"find my recent generations\", \"which studios do I have\", \"show that image again\". Prefer this over recreating assets that already exist.",
-      "files": [
-        "SKILL.md"
-      ]
+      "files": ["SKILL.md"]
     },
     {
       "name": "kive-product-shots",
       "description": "Create studio-quality product images with Kive via the Kive MCP server. Use when the user wants product shots, product photography, ecommerce images, packshots, or lifestyle images of a product — from a product page URL, an image URL, an uploaded photo, or a product already saved in Kive. Covers the full flow, workspace selection, creating the product, letting the user pick a studio, generating, and rendering results.",
-      "files": [
-        "SKILL.md"
-      ]
+      "files": ["SKILL.md"]
     },
     {
       "name": "kive-product-video",
       "description": "Generate product videos with Kive via the Kive MCP server. Use when the user wants a product video, promo clip, ad creative, animated product shot, or video variations of a product — e.g. \"make a video of this product\", \"slow zoom on the bottle\", \"create four video variations\". Covers video presets, sampling multiple outputs, audio, and rendering the finished video.",
-      "files": [
-        "SKILL.md"
-      ]
+      "files": ["SKILL.md"]
     }
   ]
 }
