@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Syncs canonical skills from skills/ into every provider plugin, and generates
-// the .well-known/skills payload served by kive.ai (vendored into the kive
-// monorepo at apps/web-public/public/.well-known/skills/).
+// the .well-known/skills payload in agentskills.io discovery format, kept
+// colocated here and ready to serve from a domain when we wire one up.
 // Usage:
 //   node scripts/sync.js          # write provider copies + well-known/skills
 //   node scripts/sync.js --check  # exit 1 if generated copies drift (CI)
