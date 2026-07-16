@@ -25,18 +25,18 @@ Videos are generated from a product that exists in Kive:
 
 ## 2. Choose video presets
 
-- Browse options with `find_video_presets`. If the user described a motion ("slow zoom", "spin"), match it to a preset; if the choice is open, show a few presets and let the user pick rather than guessing.
-- One request can use **up to four presets** and sample **up to four outputs**, so "give me four variations" is a single `generate_product_video` call — not four calls.
+- Browse options with `find_video_presets`. If the user described a motion ("slow zoom", "spin"), match it to a preset; if the choice is open, show a few presets and let the user pick rather than guessing. Presets can also be omitted entirely for prompt-only generation from a `brief`.
+- One request can use **up to four presets** (`videoPresetIds`) and sample **up to four outputs** (`samples`), so "give me four variations" is a single `generate_product_video` call — not four calls.
 
 ## 3. Generate and render
 
-- `generate_product_video` starts the generation. Defaults: one video, audio on. Adjust only when the user asked (e.g. "no sound", "four variations").
-- Video generation takes noticeably longer than images. `show_kive_video` owns the result: call it to render the finished video inline, and **call it again** if the video isn't ready yet. `check_video_generation_status` gives a plain status without rendering.
+- `generate_product_video` starts the generation. Defaults to prefer unless the user asks otherwise: 1 output, 9:16 aspect ratio, 5 seconds, `premium` mode, audio on. Durations of 4–15 seconds are supported.
+- Video generation takes noticeably longer than images. `show_kive_video` owns the result card: call it to render the finished video inline, and **call it again** if it isn't ready yet. `check_video_generation_status` gives a plain status without rendering.
 - Never tell the user the video is done without a successful `show_kive_video` render.
 
 ## Cost and permissions
 
-Video generation spends workspace credits — typically more than images, and multiplied by the number of sampled outputs. If the user asks for many variations, confirm before spending. Relay credit/permission errors instead of retrying.
+Video generation spends workspace credits — typically more than images, and multiplied by the number of sampled outputs. `estimateOnly: true` on `generate_product_video` returns the credit cost without generating; use it before big requests (many samples, `max` mode, long durations). Relay credit/permission errors instead of retrying.
 
 ## Common failure modes to avoid
 
