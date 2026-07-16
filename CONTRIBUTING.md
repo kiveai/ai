@@ -11,7 +11,7 @@ Contributions are welcome! If you've found a bug or have a feature request, plea
 
 ## Where to edit what
 
-- **Skills** are authored once in [`skills/`](skills/). The copies under `providers/*/plugin/skills/` are **generated** by [`scripts/sync.js`](scripts/sync.js) — do not edit them directly; CI will flag PRs that drift from the source.
+- **Skills** are authored once in [`skills/`](skills/). The copies under `providers/*/plugin/skills/` and `well-known/` are **generated** by [`scripts/sync.js`](scripts/sync.js) — do not edit them directly; CI will flag PRs that drift from the source. The `well-known/skills/` tree is what kive.ai serves at `/.well-known/skills/` (vendored into the kive monorepo at `apps/web-public/public/.well-known/skills/`) so `npx skills add https://kive.ai` works — after changing skills, update that copy too.
 - **Plugin manifests** (`.claude-plugin/`, `providers/*/plugin/`) are hand-maintained.
 - The Kive MCP server itself is not in this repository. For issues with the hosted server at `https://mcp.kive.ai/mcp`, open an issue here and we will route it.
 

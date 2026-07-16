@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'providers/claude/plugin/skills/**'
+      - 'well-known/**'
 
 jobs:
   comment:
@@ -16,7 +17,7 @@ jobs:
         with:
           script: |
             const body = [
-              '⚠️ Files under `providers/*/plugin/skills/` are **generated** from the canonical skills in [`skills/`](../tree/main/skills).',
+              '⚠️ Files under `providers/*/plugin/skills/` and `well-known/` are **generated** from the canonical skills in [`skills/`](../tree/main/skills).',
               '',
               'Please apply your change to the matching file in `skills/` and run `node scripts/sync.js` — direct edits to the generated copies will be overwritten by the next sync.',
             ].join('\n')
