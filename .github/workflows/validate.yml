@@ -1,0 +1,33 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Check provider skill copies are in sync
+        run: node scripts/sync.js --check
+
+      - name: Validate skills against the Agent Skills spec
+        run: |
+          for skill in skills/*/; do
+            npx --yes skills-ref validate "$skill"
+          done
+
+      - name: Validate JSON manifests
+        run: |
+          for f in .claude-plugin/marketplace.json providers/claude/plugin/.claude-plugin/plugin.json providers/claude/plugin/.mcp.json; do
+            node -e "JSON.parse(require('node:fs').readFileSync('$f', 'utf8'))" && echo "ok $f"
+          done

@@ -1,0 +1,16 @@
+name: Feature request
+description: Suggest a new skill, client integration, or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the workflow you want an agent to handle with Kive.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: A new skill, a change to an existing one, support for another client, etc. Note we intentionally keep the skill catalog small.

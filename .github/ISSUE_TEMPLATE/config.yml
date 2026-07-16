@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Kive support
+    url: https://kive.ai
+    about: For account, billing, or workspace questions, contact Kive support from the app.
+  - name: Connect Kive to Claude (docs)
+    url: https://kive.ai/docs/account-workspace-settings/connect-kive-to-claude
+    about: Step-by-step guide for connecting the Kive MCP connector.

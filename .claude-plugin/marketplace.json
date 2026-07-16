@@ -1,0 +1,18 @@
+{
+  "name": "kive",
+  "owner": {
+    "name": "Kive",
+    "email": "support@kive.ai"
+  },
+  "plugins": [
+    {
+      "name": "kive",
+      "source": "./providers/claude/plugin/",
+      "description": "Create studio-quality product images and videos with Kive",
+      "version": "0.1.0",
+      "author": {
+        "name": "Kive"
+      }
+    }
+  ]
+}

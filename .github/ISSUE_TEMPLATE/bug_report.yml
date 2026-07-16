@@ -1,0 +1,31 @@
+name: Bug report
+description: Something in a skill, plugin, or the hosted Kive MCP isn't working
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Skill (skills/)
+        - Claude plugin (providers/claude)
+        - Hosted MCP server (mcp.kive.ai)
+        - Docs / README
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead? Include the client you used (claude.ai, Claude Code, ChatGPT, Cursor, ...).
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Connect the Kive MCP in ...
+        2. Ask the agent to ...
+        3. See error ...
