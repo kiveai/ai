@@ -22,7 +22,7 @@ Examples of unacceptable behavior:
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers at **support@kive.ai**. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers at **team@kive.ai**. All complaints will be reviewed and investigated promptly and fairly.
 
 ## Attribution
 

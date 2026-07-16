@@ -6,7 +6,7 @@ Kive takes the security of this repository and the Kive platform seriously.
 
 Please do not report security vulnerabilities through public GitHub issues.
 
-Instead, email **support@kive.ai** with the subject line `SECURITY` and include:
+Instead, email **team@kive.ai** with the subject line `SECURITY` and include:
 
 - A description of the issue and its impact
 - Steps to reproduce
