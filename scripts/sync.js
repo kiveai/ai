@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-// Syncs canonical skills from skills/ into every provider plugin.
+// Syncs canonical skills from skills/ into every provider plugin, and generates
+// the .well-known/skills payload served by kive.ai (vendored into the kive
+// monorepo at apps/web-public/public/.well-known/skills/).
 // Usage:
-//   node scripts/sync.js          # write provider copies
-//   node scripts/sync.js --check  # exit 1 if provider copies drift from skills/ (CI)
+//   node scripts/sync.js          # write provider copies + well-known/skills
+//   node scripts/sync.js --check  # exit 1 if generated copies drift (CI)
 
 const fs = require('node:fs')
 const path = require('node:path')
@@ -10,6 +12,7 @@ const path = require('node:path')
 const ROOT = path.join(__dirname, '..')
 const SOURCE = path.join(ROOT, 'skills')
 const PROVIDER_SKILL_DIRS = [path.join(ROOT, 'providers', 'claude', 'plugin', 'skills')]
+const WELL_KNOWN_DIR = path.join(ROOT, 'well-known', 'skills')
 
 const CHECK = process.argv.includes('--check')
 
@@ -22,47 +25,85 @@ const listFiles = (dir, base = dir) => {
   })
 }
 
-const sourceFiles = listFiles(SOURCE).filter((f) => !f.endsWith('README.md') || f.includes(path.sep))
+// skills/README.md documents the folder and is not part of any skill.
+const sourceFiles = listFiles(SOURCE).filter((f) => f !== 'README.md')
+
+const frontmatterField = (skillMd, field) => {
+  const match = skillMd.match(new RegExp(`^${field}:\\s*(.+)$`, 'm'))
+  if (!match) throw new Error(`missing frontmatter field "${field}"`)
+  return match[1].trim()
+}
+
+const buildIndex = () => {
+  const skillDirs = fs
+    .readdirSync(SOURCE, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort()
+
+  const skills = skillDirs.map((dir) => {
+    const skillMd = fs.readFileSync(path.join(SOURCE, dir, 'SKILL.md'), 'utf8')
+    const files = sourceFiles
+      .filter((rel) => rel.startsWith(dir + path.sep))
+      .map((rel) => rel.slice(dir.length + 1).split(path.sep).join('/'))
+      .sort((a, b) => (a === 'SKILL.md' ? -1 : b === 'SKILL.md' ? 1 : a.localeCompare(b)))
+    return {
+      name: frontmatterField(skillMd, 'name'),
+      description: frontmatterField(skillMd, 'description'),
+      files,
+    }
+  })
+
+  return JSON.stringify({ skills }, null, 2) + '\n'
+}
 
 let drift = false
 
-for (const target of PROVIDER_SKILL_DIRS) {
-  const targetFiles = listFiles(target)
+const syncFile = (dstPath, content) => {
+  const current = fs.existsSync(dstPath) ? fs.readFileSync(dstPath) : null
+  const next = Buffer.isBuffer(content) ? content : Buffer.from(content)
+  if (current !== null && next.equals(current)) return
 
-  for (const rel of sourceFiles) {
-    const srcPath = path.join(SOURCE, rel)
-    const dstPath = path.join(target, rel)
-    const srcContent = fs.readFileSync(srcPath)
-    const dstContent = fs.existsSync(dstPath) ? fs.readFileSync(dstPath) : null
-
-    if (dstContent === null || !srcContent.equals(dstContent)) {
-      drift = true
-      if (CHECK) {
-        console.error(`DRIFT: ${path.relative(ROOT, dstPath)} does not match ${path.relative(ROOT, srcPath)}`)
-      } else {
-        fs.mkdirSync(path.dirname(dstPath), { recursive: true })
-        fs.writeFileSync(dstPath, srcContent)
-        console.log(`synced ${path.relative(ROOT, dstPath)}`)
-      }
-    }
+  drift = true
+  if (CHECK) {
+    console.error(`DRIFT: ${path.relative(ROOT, dstPath)} is out of date`)
+  } else {
+    fs.mkdirSync(path.dirname(dstPath), { recursive: true })
+    fs.writeFileSync(dstPath, next)
+    console.log(`synced ${path.relative(ROOT, dstPath)}`)
   }
+}
 
-  for (const rel of targetFiles) {
-    if (!sourceFiles.includes(rel)) {
+const removeStale = (targetDir, expected) => {
+  for (const rel of listFiles(targetDir)) {
+    if (!expected.includes(rel)) {
       drift = true
       if (CHECK) {
-        console.error(`DRIFT: ${path.relative(ROOT, path.join(target, rel))} has no source in skills/`)
+        console.error(`DRIFT: ${path.relative(ROOT, path.join(targetDir, rel))} has no source in skills/`)
       } else {
-        fs.rmSync(path.join(target, rel))
-        console.log(`removed ${path.relative(ROOT, path.join(target, rel))}`)
+        fs.rmSync(path.join(targetDir, rel))
+        console.log(`removed ${path.relative(ROOT, path.join(targetDir, rel))}`)
       }
     }
   }
 }
 
+for (const target of PROVIDER_SKILL_DIRS) {
+  for (const rel of sourceFiles) {
+    syncFile(path.join(target, rel), fs.readFileSync(path.join(SOURCE, rel)))
+  }
+  removeStale(target, sourceFiles)
+}
+
+for (const rel of sourceFiles) {
+  syncFile(path.join(WELL_KNOWN_DIR, rel), fs.readFileSync(path.join(SOURCE, rel)))
+}
+syncFile(path.join(WELL_KNOWN_DIR, 'index.json'), buildIndex())
+removeStale(WELL_KNOWN_DIR, [...sourceFiles, 'index.json'])
+
 if (CHECK && drift) {
-  console.error('\nProvider skill copies are out of sync. Run: node scripts/sync.js')
+  console.error('\nGenerated copies are out of sync. Run: node scripts/sync.js')
   process.exit(1)
 }
 
-if (!drift) console.log('provider skills in sync')
+if (!drift) console.log('generated copies in sync')
