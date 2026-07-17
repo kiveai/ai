@@ -23,8 +23,12 @@ jobs:
       - name: Validate skills against the Agent Skills spec
         run: |
           for skill in skills/*/; do
+            [ -d "$skill" ] || continue
             npx --yes skills-ref validate "$skill"
           done
+
+      - name: Validate behavioral eval suites
+        run: node scripts/validate-evals.js
 
       - name: Validate JSON manifests
         run: |

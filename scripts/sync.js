@@ -25,8 +25,12 @@ const listFiles = (dir, base = dir) => {
   })
 }
 
-// skills/README.md documents the folder and is not part of any skill.
-const sourceFiles = listFiles(SOURCE).filter((f) => f !== 'README.md')
+// skills/README.md and eval suites are authoring inputs, not runtime skill
+// resources. Keep them in the canonical tree without publishing them into
+// provider plugins or the /.well-known/skills payload.
+const sourceFiles = listFiles(SOURCE).filter(
+  (file) => file !== 'README.md' && !file.split(path.sep).includes('evals')
+)
 
 const frontmatterField = (skillMd, field) => {
   const match = skillMd.match(new RegExp(`^${field}:\\s*(.+)$`, 'm'))

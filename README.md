@@ -71,23 +71,17 @@ Generations use your Kive workspace permissions and credits — the agent only g
 
 ## Agent skills
 
-[Agent skills](https://agentskills.io) are instructions that help agents use Kive well — when to ask you to pick a studio, how to poll a running generation, how to recover when an upload isn't ready. This repo ships a small, curated set in [`skills/`](skills/).
+[Agent skills](https://agentskills.io) are optional instructions that can help agents use Kive for specialized workflows. Kive currently relies on the MCP server's tool descriptions instead of shipping separate skills.
+
+The reusable authoring, sync, discovery, validation, and evaluation infrastructure remains in this repository so future skills can be added when paired evaluations show a meaningful improvement over MCP alone. See [`skills/`](skills/) and [`EVALUATION.md`](EVALUATION.md).
 
 ### Claude Code plugin
 
-The Kive plugin bundles the remote MCP server and the skills:
+The Kive plugin configures the remote MCP server:
 
 ```bash
 /plugin marketplace add kiveai/ai
 /plugin install kive@kive
-```
-
-### Manual installation
-
-> Manually installed skills don't auto-update. Run `npx skills update -y` to get the latest versions.
-
-```bash
-npx skills add kiveai/ai
 ```
 
 ## Agent-readable docs

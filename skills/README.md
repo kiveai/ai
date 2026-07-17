@@ -6,7 +6,9 @@ This folder is the **source of truth**. The copies inside `providers/*/plugin/sk
 
 We keep the catalog deliberately small: a few skills that each own one workflow beat a large overlapping set (agents pick skills by description, and discovery quality drops as catalogs grow).
 
-Install into your project with:
+There are currently no published Kive skills. Add a skill here only after paired evaluations demonstrate a meaningful improvement over using the Kive MCP server without it. Every new skill must include the eval suite described in [`EVALUATION.md`](../EVALUATION.md).
+
+When this directory contains published skills, install them into your project with:
 
 ```bash
 npx skills add kiveai/ai

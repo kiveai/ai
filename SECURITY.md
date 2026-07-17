@@ -16,4 +16,4 @@ We will acknowledge your report and keep you informed of the remediation progres
 
 ## Scope
 
-This repository contains agent skills, plugin manifests, and documentation. It does not contain the Kive MCP server or API implementations. Reports about the hosted services (`https://mcp.kive.ai`, `https://kive.ai`) are welcome through the same channel.
+This repository contains agent-skill infrastructure, plugin manifests, and documentation. It does not contain the Kive MCP server or API implementations. Reports about the hosted services (`https://mcp.kive.ai`, `https://kive.ai`) are welcome through the same channel.

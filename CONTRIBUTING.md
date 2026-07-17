@@ -24,4 +24,8 @@ Skills follow the [Agent Skills specification](https://agentskills.io/specificat
 - Keep `SKILL.md` under 500 lines; move detailed material to `references/`.
 - We deliberately keep the catalog small — a few high-quality skills beat many overlapping ones. New skill proposals should start as an issue.
 
+## Evaluating skill behavior
+
+Every skill must include `evals/evals.json` with realistic prompts, expected outputs, and objective assertions. Run `node scripts/validate-evals.js` before opening a PR. For behavior changes, follow [`EVALUATION.md`](EVALUATION.md) and compare fresh with-skill runs against fresh baseline runs without the skill.
+
 Thanks for contributing to Kive! ✨
