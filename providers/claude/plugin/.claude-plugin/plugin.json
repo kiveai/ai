@@ -1,0 +1,19 @@
+{
+  "name": "kive",
+  "description": "Kive plugin for Claude — create studio-quality product images and videos from chat",
+  "version": "0.1.1",
+  "author": {
+    "name": "Kive",
+    "url": "https://kive.ai"
+  },
+  "homepage": "https://kive.ai/mcp",
+  "repository": "https://github.com/kiveai/ai",
+  "license": "MIT",
+  "keywords": [
+    "kive",
+    "product-photography",
+    "image-generation",
+    "video-generation",
+    "mcp"
+  ]
+}

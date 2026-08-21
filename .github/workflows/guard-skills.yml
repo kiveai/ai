@@ -1,0 +1,36 @@
+name: Guard synced skills
+
+on:
+  pull_request:
+    paths:
+      - 'providers/claude/plugin/skills/**'
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Remind that provider skill copies are generated
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const body = [
+              '⚠️ Files under `providers/*/plugin/skills/` are **generated** from the canonical skills in [`skills/`](../tree/main/skills).',
+              '',
+              'Please apply your change to the matching file in `skills/` and run `node scripts/sync.js` — direct edits to the generated copies will be overwritten by the next sync.',
+            ].join('\n')
+            const existing = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            if (!existing.data.some((c) => c.body?.startsWith('⚠️ Files under `providers/'))) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              })
+            }
