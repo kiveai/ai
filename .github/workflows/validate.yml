@@ -31,6 +31,9 @@ jobs:
             npx --yes skills-ref@0.1.5 validate "$skill"
           done
 
+      - name: Test Agent Skills release artifacts
+        run: node --test scripts/build-release.test.js
+
       - name: Validate JSON manifests
         run: |
           for f in .claude-plugin/marketplace.json providers/claude/plugin/.claude-plugin/plugin.json providers/claude/plugin/.mcp.json; do

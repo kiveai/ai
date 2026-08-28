@@ -85,6 +85,11 @@ Install it with:
 npx skills add kiveai/ai
 ```
 
+Agents can also discover the released skills from
+[`https://kive.ai/.well-known/agent-skills/index.json`](https://kive.ai/.well-known/agent-skills/index.json).
+Each repository release publishes a versioned RFC v0.2.0 index and immutable
+skill archives; kive.ai copies the latest release index during its build.
+
 See [`skills/`](skills/) for the published skill catalog.
 
 ### Claude Code plugin
