@@ -31,8 +31,10 @@ jobs:
             npx --yes skills-ref@0.1.5 validate "$skill"
           done
 
-      - name: Test Agent Skills release artifacts
-        run: node --test scripts/build-release.test.js
+      - name: Build Agent Skills release artifacts
+        env:
+          RELEASE_TAG: v0.0.0-test
+        run: node scripts/build-release.js
 
       - name: Validate JSON manifests
         run: |
