@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "kive": {
+      "type": "http",
+      "url": "https://mcp.kive.ai/mcp"
+    }
+  }
+}

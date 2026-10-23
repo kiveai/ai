@@ -10,6 +10,7 @@ const path = require('node:path')
 const ROOT = path.join(__dirname, '..')
 const SOURCE = path.join(ROOT, 'skills')
 const PROVIDER_SKILL_DIRS = [
+  path.join(ROOT, 'providers', 'claude', 'plugin', 'skills'),
   path.join(ROOT, 'providers', 'agent-plugins', 'plugin', 'skills'),
 ]
 

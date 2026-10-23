@@ -3,7 +3,7 @@ name: Guard synced skills
 on:
   pull_request:
     paths:
-      - 'providers/agent-plugins/plugin/skills/**'
+      - 'providers/claude/plugin/skills/**'
 
 jobs:
   comment:

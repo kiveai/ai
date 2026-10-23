@@ -1,0 +1,18 @@
+{
+  "name": "kive",
+  "description": "Official Kive tools and skills for Claude Code",
+  "owner": {
+    "name": "Kive",
+    "email": "team@kive.ai"
+  },
+  "plugins": [
+    {
+      "name": "kive",
+      "source": "./providers/claude/plugin/",
+      "description": "Create studio-quality product images and videos with Kive",
+      "author": {
+        "name": "Kive"
+      }
+    }
+  ]
+}

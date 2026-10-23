@@ -1,0 +1,11 @@
+interface:
+  display_name: "Build a Kive Campaign"
+  short_description: "Plan cohesive, approval-ready Kive campaigns"
+  default_prompt: "Use $kive-build-campaign to plan a cohesive product launch across social placements."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "kive"
+      description: "Kive MCP server for product assets and generation"
+      transport: "streamable_http"
+      url: "https://mcp.kive.ai/mcp"
