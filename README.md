@@ -96,6 +96,12 @@ The Kive plugin configures the remote MCP server and installs the campaign skill
 /plugin install kive@kive
 ```
 
+### Portable Agent Plugin
+
+The [`providers/agent-plugins/plugin/`](providers/agent-plugins/plugin/) package follows the [Agent Plugins](https://agent-plugins.org/) format used by [Stripe's AI repo](https://github.com/stripe/ai/tree/main/providers/agent-plugins/plugin). It includes the Kive MCP connection, the campaign skill, and `com.openai` presentation metadata for ChatGPT-compatible clients. The [repo marketplace](.agents/plugins/marketplace.json) exposes this package to ChatGPT and Codex as `kive@kive-ai`.
+
+The existing [Kive ChatGPT app listing](https://chatgpt.com/plugins/plugin_asdk_app_6a5f329f776c819185906fea7ed52e9d) remains the installation path for ChatGPT users.
+
 ## Agent-readable docs
 
 - [kive.ai/llms.txt](https://kive.ai/llms.txt) — capability map and agent guidance
