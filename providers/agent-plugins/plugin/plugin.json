@@ -1,0 +1,81 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "kive",
+  "version": "3.0.0",
+  "description": "Create on-brand product images and videos with Kive from an AI agent.",
+  "author": {
+    "name": "Kive",
+    "url": "https://kive.ai"
+  },
+  "homepage": "https://kive.ai/mcp",
+  "repository": "https://github.com/kiveai/ai",
+  "license": "MIT",
+  "keywords": [
+    "kive",
+    "product-photography",
+    "image-generation",
+    "video-generation",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Kive",
+        "shortDescription": "Create product visuals",
+        "longDescription": "Browse saved products and creative assets, import products, choose visual styles, and create or edit on-brand product images and videos with Kive.",
+        "developerName": "Kive",
+        "category": "Creativity",
+        "websiteURL": "https://kive.ai",
+        "privacyPolicyURL": "https://kive.ai/privacy",
+        "termsOfServiceURL": "https://kive.ai/terms",
+        "supportURL": "https://kive.ai/docs/mcp/manage-and-troubleshoot",
+        "defaultPrompt": [
+          "Turn this product photo into a saved product and make me three studio-quality shots",
+          "Make product shots of my face cream. Show me some studio styles first and let me pick the one I like best",
+          "Turn my latest product shot into a short vertical video with a slow reveal"
+        ],
+        "brandColor": "#111113",
+        "composerIcon": "./assets/kive-logo.png",
+        "logo": "./assets/kive-logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List the connected account's Kive workspaces",
+              "user_prompt": "Show my Kive workspaces",
+              "tools_triggered": "list_workspaces",
+              "expected_behavior": "List the Kive workspaces available to the connected account without creating or generating anything."
+            },
+            {
+              "description": "Browse saved products without spending credits",
+              "user_prompt": "Show me my saved products in Kive and how they look. Do not generate new images.",
+              "tools_triggered": "list_workspaces find_products",
+              "expected_behavior": "Show the saved products and their existing previews, or say clearly when the account has none. Do not generate images or spend credits."
+            },
+            {
+              "description": "Browse available video presets",
+              "user_prompt": "What video presets does Kive have for product videos?",
+              "tools_triggered": "list_workspaces find_video_presets",
+              "expected_behavior": "Show available Kive video presets for the connected workspace without starting a video generation."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated software debugging request",
+              "user_prompt": "Find the bug in this Python sorting function. It does not use Kive or handle images."
+            },
+            {
+              "description": "Unrelated weather request",
+              "user_prompt": "What is the weather in Stockholm this weekend?"
+            },
+            {
+              "description": "General image creation with no Kive context",
+              "user_prompt": "Draw a watercolor landscape of a mountain lake."
+            }
+          ]
+        }
+      }
+    }
+  }
+}

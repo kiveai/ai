@@ -9,12 +9,12 @@ Contributions are welcome! If you've found a bug or have a feature request, plea
 3. Run `node scripts/sync.js` so provider plugin copies stay in sync with `skills/`.
 4. Submit a [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
 
-Plugin versions are declared only in `providers/claude/plugin/.claude-plugin/plugin.json`. Changes to the published plugin must bump that version using semantic versioning and add an entry to `CHANGELOG.md`; do not add a second version to `.claude-plugin/marketplace.json`.
+Claude Code plugin versions are declared only in `providers/claude/plugin/.claude-plugin/plugin.json`. Changes to that published plugin must bump its version using semantic versioning and add an entry to `CHANGELOG.md`; do not add a second version to `.claude-plugin/marketplace.json`. The portable Agent Plugin is versioned separately in `providers/agent-plugins/plugin/plugin.json`; keep it aligned with the published ChatGPT app version.
 
 ## Where to edit what
 
 - **Skills** are authored once in [`skills/`](skills/). The copies under `providers/*/plugin/skills/` are **generated** by [`scripts/sync.js`](scripts/sync.js) — do not edit them directly; CI will flag PRs that drift from the source.
-- **Plugin manifests** (`.claude-plugin/`, `providers/*/plugin/`) are hand-maintained.
+- **Plugin manifests and assets** (`.claude-plugin/`, `providers/*/plugin/`) are hand-maintained. Keep the `com.openai` metadata in the portable Agent Plugin aligned with the [Kive ChatGPT listing](https://chatgpt.com/plugins/plugin_asdk_app_6a5f329f776c819185906fea7ed52e9d).
 - The Kive MCP server itself is not in this repository. For issues with the hosted server at `https://mcp.kive.ai/mcp`, open an issue here and we will route it.
 
 ## Skill guidelines

@@ -38,6 +38,6 @@ jobs:
 
       - name: Validate JSON manifests
         run: |
-          for f in .claude-plugin/marketplace.json providers/claude/plugin/.claude-plugin/plugin.json providers/claude/plugin/.mcp.json; do
+          for f in .claude-plugin/marketplace.json providers/claude/plugin/.claude-plugin/plugin.json providers/claude/plugin/.mcp.json providers/agent-plugins/plugin/plugin.json providers/agent-plugins/plugin/mcp.json; do
             node -e "JSON.parse(require('node:fs').readFileSync('$f', 'utf8'))" && echo "ok $f"
           done
