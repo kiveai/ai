@@ -8,7 +8,7 @@ body:
       label: Area
       options:
         - Skill (skills/)
-        - Claude plugin (providers/claude)
+        - Portable Agent Plugin (providers/agent-plugins)
         - Hosted MCP server (mcp.kive.ai)
         - Docs / README
         - Other

@@ -87,15 +87,6 @@ npx skills add kiveai/ai
 
 See [`skills/`](skills/) for the published skill catalog.
 
-### Claude Code plugin
-
-The Kive plugin configures the remote MCP server and installs the campaign skill:
-
-```bash
-/plugin marketplace add kiveai/ai
-/plugin install kive@kive
-```
-
 ### Portable Agent Plugin
 
 The [`providers/agent-plugins/plugin/`](providers/agent-plugins/plugin/) package follows the [Agent Plugins](https://agent-plugins.org/) format used by [Stripe's AI repo](https://github.com/stripe/ai/tree/main/providers/agent-plugins/plugin). It includes the Kive MCP connection, the campaign skill, and `com.openai` presentation metadata for ChatGPT-compatible clients. Point a compatible client at this repository and the `providers/agent-plugins/plugin/` subdirectory.
