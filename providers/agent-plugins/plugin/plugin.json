@@ -43,35 +43,47 @@
           "positive": [
             {
               "description": "List the connected account's Kive workspaces",
-              "user_prompt": "Show my Kive workspaces",
+              "prompt": "Show my Kive workspaces",
               "tools_triggered": "list_workspaces",
               "expected_behavior": "List the Kive workspaces available to the connected account without creating or generating anything."
             },
             {
               "description": "Browse saved products without spending credits",
-              "user_prompt": "Show me my saved products in Kive and how they look. Do not generate new images.",
-              "tools_triggered": "list_workspaces find_products",
+              "prompt": "Show me my saved products in Kive and how they look. Do not generate new images.",
+              "tools_triggered": "list_workspaces, find_products",
               "expected_behavior": "Show the saved products and their existing previews, or say clearly when the account has none. Do not generate images or spend credits."
             },
             {
               "description": "Browse available video presets",
-              "user_prompt": "What video presets does Kive have for product videos?",
-              "tools_triggered": "list_workspaces find_video_presets",
+              "prompt": "What video presets does Kive have for product videos?",
+              "tools_triggered": "list_workspaces, find_video_presets",
               "expected_behavior": "Show available Kive video presets for the connected workspace without starting a video generation."
+            },
+            {
+              "description": "Browse existing Kive generations",
+              "prompt": "Show my recent generated images and videos in Kive. Do not create anything new.",
+              "tools_triggered": "list_workspaces, find_generations",
+              "expected_behavior": "Show existing generations and previews, or say clearly when the connected workspace has none. Do not start generation or spend credits."
+            },
+            {
+              "description": "Browse available product-shot studios",
+              "prompt": "Show me the product-shot studios I can use in Kive.",
+              "tools_triggered": "list_workspaces, find_studios",
+              "expected_behavior": "Show available Kive studios for the connected workspace without generating an image or spending credits."
             }
           ],
           "negative": [
             {
               "description": "Unrelated software debugging request",
-              "user_prompt": "Find the bug in this Python sorting function. It does not use Kive or handle images."
+              "prompt": "Find the bug in this Python sorting function. It does not use Kive or handle images."
             },
             {
               "description": "Unrelated weather request",
-              "user_prompt": "What is the weather in Stockholm this weekend?"
+              "prompt": "What is the weather in Stockholm this weekend?"
             },
             {
               "description": "General image creation with no Kive context",
-              "user_prompt": "Draw a watercolor landscape of a mountain lake."
+              "prompt": "Draw a watercolor landscape of a mountain lake."
             }
           ]
         }

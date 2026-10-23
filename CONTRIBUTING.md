@@ -14,7 +14,7 @@ Claude Code plugin versions are declared only in `providers/claude/plugin/.claud
 ## Where to edit what
 
 - **Skills** are authored once in [`skills/`](skills/). The copies under `providers/*/plugin/skills/` are **generated** by [`scripts/sync.js`](scripts/sync.js) — do not edit them directly; CI will flag PRs that drift from the source.
-- **Plugin manifests and assets** (`.claude-plugin/`, `providers/*/plugin/`) are hand-maintained. Keep the `com.openai` metadata in the portable Agent Plugin aligned with the [Kive ChatGPT listing](https://chatgpt.com/plugins/plugin_asdk_app_6a5f329f776c819185906fea7ed52e9d).
+- **Plugin manifests, marketplaces, and assets** (`.agents/plugins/`, `.claude-plugin/`, `providers/*/plugin/`) are hand-maintained. Keep the `com.openai` metadata in the portable Agent Plugin aligned with the [Kive ChatGPT listing](https://chatgpt.com/plugins/plugin_asdk_app_6a5f329f776c819185906fea7ed52e9d).
 - The Kive MCP server itself is not in this repository. For issues with the hosted server at `https://mcp.kive.ai/mcp`, open an issue here and we will route it.
 
 ## Skill guidelines
