@@ -45,12 +45,14 @@ Give every asset a purpose, placement, format, route, and concise brief. Each as
 - **Exception, a placement the picked look's ratio doesn't fit** (say a 9:16 story from a 4:5 look): the server keeps a picked look on remixes, but a remix can't change ratio. Plan a direct generation with the picked look's image URL in `styleImageUrls` and the placement's ratio, and name that route in the plan, so the user can approve it or take a remix in the look's own ratio instead.
 - **Video** (`generate_product_video`): looks and ads do not start a video. Anchor it on the saved product and put the motion and the campaign spine in `brief`.
 
-For direct generations and videos, use the user's requested ratio when supplied; otherwise use:
+For direct generations, use the user's requested ratio when supplied; otherwise use:
 
 - Feed still or product ad: `4:5`
 - Story, Reel, or other vertical short-form asset: `9:16`
 - Square catalog tile: `1:1`
-- Landscape site hero or video: `16:9`
+- Landscape site hero: `16:9`
+
+Videos can't be `4:5`. Use the user's requested ratio when the video tool supports it; otherwise use `9:16`, the server's default, for vertical placements, `3:4` (the closest to 4:5) or `1:1` for a feed video, and `16:9` only for a landscape placement. When a video can't take its placement's usual ratio, name the ratio you used in the plan.
 
 Keep words and calls to action out of generated scenes unless the user explicitly requires them or picked an ad that carries copy. Prefer composition with intentional negative space for later copy so the product image remains accurate and reusable.
 

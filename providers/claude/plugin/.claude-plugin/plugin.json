@@ -18,7 +18,7 @@
     "mcp"
   ],
   "icon": "./assets/kive-logo.png",
-  "documentationUrl": "https://kive.ai/docs/mcp/connect-to-claude",
+  "documentationUrl": "https://github.com/kiveai/ai/blob/main/providers/claude/plugin/README.md",
   "supportUrl": "https://kive.ai/docs/mcp/manage-and-troubleshoot",
   "privacyPolicyUrl": "https://kive.ai/privacy",
   "termsOfServiceUrl": "https://kive.ai/terms"

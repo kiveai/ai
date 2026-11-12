@@ -4,7 +4,7 @@ Create product images and videos with [Kive](https://kive.ai) from a Claude conv
 
 ## What the plugin contains
 
-- **The Kive connector.** `.mcp.json` points Claude at Kive's hosted MCP server, `https://mcp.kive.ai/mcp`. You sign in with your Kive account through OAuth the first time Claude uses it. There are no API keys to paste.
+- **The Kive connector.** `.mcp.json` points Claude at Kive's hosted MCP server, `https://mcp.kive.ai/mcp`. You sign in once with your Kive account through OAuth. There are no API keys to paste.
 - **The `kive-build-campaign` skill.** It turns a loose campaign request into a plan with one shared visual direction, placement-specific assets and the credit cost, and waits for your approval before it generates anything.
 
 The plugin has no hooks, scripts or local servers, so nothing runs on your machine. Everything Claude does with Kive goes through the connector, to your Kive workspace, with your Kive permissions.
@@ -17,6 +17,8 @@ In Claude Code:
 claude plugin marketplace add kiveai/ai
 claude plugin install kive@kive
 ```
+
+Then run `/mcp` in Claude Code, select `plugin:kive:kive`, and sign in with your Kive account.
 
 ## Try it
 
