@@ -1,11 +1,11 @@
 ---
 name: kive-build-campaign
-description: Plan and produce cohesive multi-asset product campaigns with Kive through its MCP server. Use when the user asks for a product launch, campaign, ad set, social content package, creative concepts, multiple placements, or coordinated product images and videos. Turn a loose marketing goal into placement-specific briefs, let the user pick the campaign's look from Kive's looks and ads, estimate the exact credit cost, get approval before spending, and keep the visual direction consistent across assets.
+description: Plan and produce cohesive multi-asset product campaigns with Kive through its MCP server. Use when the user asks for a product launch, campaign, ad set, social content package, creative concepts, multiple placements, or coordinated product images and videos. Turn a loose marketing goal into placement-specific briefs, let the user pick the campaign's look from Kive's looks and ads, quote the credit cost, get approval before spending, and keep the visual direction consistent across assets.
 ---
 
 # Build a Kive campaign
 
-Turn a loose campaign request into a decision-ready plan and, after approval, finished Kive assets. Add campaign judgment and cross-tool coordination; rely on the Kive MCP server instructions and tool descriptions for individual call contracts. Where this skill and the server disagree, follow the server.
+Turn a loose campaign request into a decision-ready plan and, after approval, finished Kive assets. Add campaign judgment and cross-tool coordination; rely on the Kive MCP server instructions and tool descriptions for individual call contracts. Where this skill and the server disagree, follow the server, with two deliberate exceptions marked below: a placement whose ratio the picked look doesn't fit (step 4), and the planned total you ask the user to approve (step 5).
 
 ## 1. Resolve the brief
 
@@ -38,10 +38,11 @@ When the user asks for alternative directions, honor the requested count; otherw
 
 ## 4. Build the asset plan
 
-Give every asset a purpose, placement, format, route, and concise brief. Each asset takes one of three routes:
+Give every asset a purpose, placement, format, route, and concise brief. Each asset takes one of these routes:
 
-- **Remix of the picked look or ad** (`remix_idea`): one image per call, composed by the look or ad. It takes no ratio, mode, or sample settings, and its `instruction` carries only the user's own direction. Use it for the stills that should match the pick.
-- **Direct generation** (`generate_product_image`): for a look the user described, a studio they named, or a placement that needs a set ratio. Put the campaign spine in `brief`. To carry the style of a finished campaign still into later stills, pass its image URL in `styleImageUrls`.
+- **Remix of the picked look or ad** (`remix_idea`): one image per call, composed by the look or ad and in its ratio. `find_ideas` gives each look's `aspectRatio` as width ÷ height: 0.8 is 4:5, 0.5625 is 9:16, 1 is 1:1. A remix takes no ratio, mode, or sample settings, and its `instruction` carries only the user's own direction. Use it for every still whose placement fits the picked look's ratio.
+- **Direct generation** (`generate_product_image`): for a look the user described or a studio they named. Put the campaign spine in `brief`. To carry the style of a finished campaign still into later stills, pass its image URL in `styleImageUrls`.
+- **Exception, a placement the picked look's ratio doesn't fit** (say a 9:16 story from a 4:5 look): the server keeps a picked look on remixes, but a remix can't change ratio. Plan a direct generation with the picked look's image URL in `styleImageUrls` and the placement's ratio, and name that route in the plan, so the user can approve it or take a remix in the look's own ratio instead.
 - **Video** (`generate_product_video`): looks and ads do not start a video. Anchor it on the saved product and put the motion and the campaign spine in `brief`.
 
 For direct generations and videos, use the user's requested ratio when supplied; otherwise use:
@@ -58,9 +59,12 @@ Keep words and calls to action out of generated scenes unless the user explicitl
 For a campaign or any request with multiple assets, treat an exact asset list plus credit estimate as the approval checkpoint unless the user has already approved that exact work.
 
 - For each direct generation and video, call the generation tool once per planned configuration with `estimateOnly: true`. Use the final product, aspect ratio, mode, and sample count, plus any studio or preset the user chose, so the quote matches execution.
-- For each remix, use the price per remix image that `find_ideas` returned. Showing looks and ads is free.
-- Report each cost as the tool gave it, and the combined total of the planned assets. If the total exceeds the user's budget, adjust the plan and re-estimate; never silently drop an asset or spend above the cap.
-- Present the campaign spine, asset table, the look or ad in use, and total. Ask for explicit approval to spend.
+- For each remix, use the price per remix image that `find_ideas` returned, and say it is a price per image: a remix is a Kive Agent chat, and Kive reports what it used when the image is ready.
+- Showing looks and ads is free.
+- Report each cost as the tool gave it.
+- **Exception, the planned total:** add the quotes into one planned total and call it that. It is what the user approves and what a budget is checked against. Otherwise the server's rule holds: never work out a remaining balance or credits across results, and repeat a balance only as a tool gives it.
+- If the planned total exceeds the user's budget, adjust the plan and re-quote; never silently drop an asset or spend above the cap.
+- Present the campaign spine, asset table, the look or ad in use, and the planned total. Ask for explicit approval to spend.
 - Stop there. An estimate is not a generation, and phrases such as "show me the approach", "before we commit", or "get it ready for approval" are not authorization to spend.
 - Skip estimates when the user explicitly asks not to estimate.
 
@@ -90,6 +94,6 @@ https://kive.ai/<workspace url>/generate-image?id=<output id>&generationId=<gene
 Keep it concise and decision-ready:
 
 1. **Campaign spine:** goal, visual hook, look, and protected product truth.
-2. **Assets:** placement, ratio, route (remix, direct generation, or video), brief, samples, and exact credits.
-3. **Total:** combined Kive credits and any budget tradeoff.
+2. **Assets:** placement, ratio, route (remix, direct generation, or video), brief, samples, and credits as quoted.
+3. **Planned total:** the sum of those quotes, and any budget tradeoff.
 4. **Decision:** one clear approval question or, during exploration, a choice between directions.

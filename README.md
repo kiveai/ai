@@ -77,7 +77,7 @@ Generations use your Kive workspace permissions and credits — the agent only g
 
 Kive currently ships one deliberately focused skill:
 
-- [`kive-build-campaign`](skills/kive-build-campaign/) turns a loose product campaign request into a coherent multi-format plan, builds it on the look or ad you pick, quotes the exact credit cost, and waits for approval before generating.
+- [`kive-build-campaign`](skills/kive-build-campaign/) turns a loose product campaign request into a coherent multi-format plan, builds it on the look or ad you pick, quotes the credit cost, and waits for approval before generating.
 
 Install it with:
 
