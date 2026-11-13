@@ -1,7 +1,8 @@
 {
   "name": "kive",
+  "displayName": "Kive",
   "description": "Kive plugin for Claude — create studio-quality product images and videos from chat",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": {
     "name": "Kive",
     "url": "https://kive.ai"
@@ -15,5 +16,10 @@
     "image-generation",
     "video-generation",
     "mcp"
-  ]
+  ],
+  "icon": "./assets/kive-logo.png",
+  "documentationUrl": "https://github.com/kiveai/ai/blob/main/providers/claude/plugin/README.md",
+  "supportUrl": "https://kive.ai/docs/mcp/manage-and-troubleshoot",
+  "privacyPolicyUrl": "https://kive.ai/privacy",
+  "termsOfServiceUrl": "https://kive.ai/terms"
 }

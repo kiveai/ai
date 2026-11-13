@@ -2,7 +2,7 @@
 
 This repo is the one-stop shop for using [Kive](https://kive.ai) with AI agents and LLMs.
 
-Kive turns product photos into studio-quality images and videos. Connect the Kive MCP server to your favorite AI client and your agent can browse your workspace, set up products, pick studios, and generate product images and videos — right from chat.
+Kive turns product photos into studio-quality images and videos. Connect the Kive MCP server to your favorite AI client and your agent can browse your workspace, set up products, show you looks and ads to pick from, and generate product images and videos — right from chat.
 
 ## Model Context Protocol (MCP)
 
@@ -56,16 +56,16 @@ Full list at [kive.ai/mcp](https://kive.ai/mcp).
 
 ## What agents can do with Kive
 
-- Browse your workspaces, saved products, trained models, studios, video presets, and previous generations
+- Browse your workspaces, saved products, trained models, looks and ads, studios, video presets, and previous generations
 - Create a saved product from a product page URL, a public image URL, or an uploaded photo
-- Generate product images with Kive studios, and product videos with video presets
+- Create product images from a look or ad you pick, a scene you describe, or a studio you name, and product videos from a short brief
 - Edit existing images ("put the product on a marble surface")
 - Show finished images and videos inline while you iterate
 
 Try prompts like:
 
 - `Show the products in my Kive workspace`
-- `Generate a product image for this product using a clean studio`
+- `Show me some looks for this product and let me pick one`
 - `Make a product video with a slow zoom preset`
 - `Edit this image so the product is on a marble surface`
 
@@ -77,7 +77,7 @@ Generations use your Kive workspace permissions and credits — the agent only g
 
 Kive currently ships one deliberately focused skill:
 
-- [`kive-build-campaign`](skills/kive-build-campaign/) turns a loose product campaign request into a coherent multi-format plan, grounds it in real Kive studios and presets, quotes the exact credit cost, and waits for approval before generating.
+- [`kive-build-campaign`](skills/kive-build-campaign/) turns a loose product campaign request into a coherent multi-format plan, builds it on the look or ad you pick, quotes the credit cost, and waits for approval before generating.
 
 Install it with:
 
